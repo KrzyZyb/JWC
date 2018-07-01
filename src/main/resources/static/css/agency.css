@@ -64,6 +64,13 @@ section h3.section-subheading {
   font-weight: 700;
 }
 
+.btn-med {
+  font-size: 15px;
+  font-weight: 600;
+  padding: 10px 30px;
+  margin: 10px;
+}
+
 .btn-xl {
   font-size: 18px;
   padding: 20px 40px;
@@ -73,7 +80,17 @@ section h3.section-subheading {
   background-color: #002252;
 }
 
+.btn-secondary {
+  background-color: #080808;
+}
+
 .btn-primary:active, .btn-primary:focus, .btn-primary:hover {
+  background-color: #005daa !important;
+  border-color: #005daa !important;
+  color: white;
+}
+
+.btn-secondary:active, .btn-secondary:focus, .btn-secondary:hover {
   background-color: #005daa !important;
   border-color: #005daa !important;
   color: white;
