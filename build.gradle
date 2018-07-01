@@ -1,0 +1,35 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.2.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+bootJar {
+    baseName = 'P53Project'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile(group: 'org.webjars', name: 'bootstrap', version: '4.1.1')
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf")
+    compile (group: 'org.webjars', name: 'font-awesome', version: '3.0.0')
+    compile (group: 'org.webjars.bower', name: 'ag-grid', version: '1.4.1')
+    testCompile("junit:junit")
+}
