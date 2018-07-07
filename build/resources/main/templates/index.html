@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
 
     <meta charset="utf-8">
@@ -11,17 +10,17 @@
     <title>Agency - Start Bootstrap Theme</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template -->
-    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../vendor/font-awesome/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
     <!-- Custom styles for this template -->
-    <link href="css/agency.css" rel="stylesheet">
+    <link href="../css/agency.css" rel="stylesheet">
 
     <!-- AgGrid-->
     <script src="https://unpkg.com/ag-grid/dist/ag-grid.min.noStyle.js"></script>
@@ -35,7 +34,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="img/logos/JLogo_mini.png" alt=""></a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img class="img-fluid" src="../img/logos/JLogo_mini.png" alt=""></a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -112,8 +111,8 @@
     </section>
 
     <!-- upload -->
-    <section id="upload">
-      <div class="container">
+    <section>
+      <div class="container"id="upload">
         <div class="row">
           <div class="col-lg-12 text-center">
               <span class="fa-stack fa-4x">
@@ -122,10 +121,27 @@
             </span>
             <h2 class="section-heading text-uppercase">Upload</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-            <div>
-              <a class="btn btn-secondary btn-med js-scroll-trigger" href="#services">Upload JAD File</a>
-              <a class="btn btn-secondary btn-med js-scroll-trigger" href="#services">Upload OPS File</a>
-            </div>
+              <form  method="POST" action="uploadFile" enctype="multipart/form-data" th:action="@{/upload/jadUpload}">
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text">Upload</span>
+                  </div>
+                  <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="jadFileUpload" name="file" accept=".csv"/>
+                    <label class="custom-file-label" for="jadFileUpload">Choose JAD file</label>
+                  </div>
+                </div>
+                <!--<div class="input-group mb-3">-->
+                  <!--<div class="input-group-prepend">-->
+                    <!--<span class="input-group-text">Upload</span>-->
+                  <!--</div>-->
+                  <!--<div class="custom-file">-->
+                    <!--<input type="file" class="custom-file-input" id="inputGroupFile02">-->
+                    <!--<label class="custom-file-label" for="inputGroupFile01">Choose OPS file</label>-->
+                  <!--</div>-->
+                <!--</div>-->
+                <button id="uploadFiles" class="btn btn-primary btn-mid text-uppercase" type="submit" value="Submit">Upload Files</button>
+              </form>
           </div>
         </div>
       </div>
@@ -457,21 +473,21 @@
     </div>
 
     <!-- Bootstrap core JavaScript -->
-    <script src="vendor/jquery/jquery.min.js"></script>
-    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
 
     <!-- Contact form JavaScript -->
-    <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
+    <script src="../js/jqBootstrapValidation.js"></script>
+    <script src="../js/contact_me.js"></script>
 
     <!-- Custom scripts for this template -->
-    <script src="js/agency.min.js"></script>
+    <script src="../js/agency.min.js"></script>
 
   <-- Ag-Grid -->
-    <script src="vendor/ag-grid/ag-grid-script.js"></script>
+    <script src="../vendor/ag-grid/ag-grid-script.js"></script>
   </body>
 
 </html>
