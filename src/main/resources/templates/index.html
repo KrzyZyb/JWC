@@ -122,25 +122,17 @@
             <h2 class="section-heading text-uppercase">Upload</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
               <form  method="POST" action="uploadFile" enctype="multipart/form-data" th:action="@{/upload/jadUpload}">
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text">Upload</span>
-                  </div>
-                  <div class="custom-file">
-                    <input type="file" class="custom-file-input" id="jadFileUpload" name="file" accept=".csv"/>
-                    <label class="custom-file-label" for="jadFileUpload">Choose JAD file</label>
-                  </div>
-                </div>
-                <!--<div class="input-group mb-3">-->
-                  <!--<div class="input-group-prepend">-->
-                    <!--<span class="input-group-text">Upload</span>-->
-                  <!--</div>-->
-                  <!--<div class="custom-file">-->
-                    <!--<input type="file" class="custom-file-input" id="inputGroupFile02">-->
-                    <!--<label class="custom-file-label" for="inputGroupFile01">Choose OPS file</label>-->
-                  <!--</div>-->
-                <!--</div>-->
-                <button id="uploadFiles" class="btn btn-primary btn-mid text-uppercase" type="submit" value="Submit">Upload Files</button>
+
+
+                <span class="input-group-btn">
+                    <span class="btn btn-primary btn-file">
+                        <input type="file" single id="jadFileUpload" name="file" accept=".csv" lang="en"/>
+                    </span>
+                      <span class="btn btn-primary btn-file">
+                        <input type="file" single id="opsFileUpload" name="file" accept=".csv" lang="en">
+                    </span>
+                </span>
+                <button id="uploadFiles" class="btn btn-primary text-uppercase" type="submit" value="Submit">Upload Files</button>
               </form>
           </div>
         </div>
