@@ -17,7 +17,7 @@ public class JadDataProcessor {
     private static final int SHORT_WAYPOINT_LINE=5;
     private static final int LONG_WAYPOINT_LINE=6;
     private JadRepository jadRepository;
-    private Logger logger = LoggerFactory.getLogger("logger");
+    private Logger logger = LoggerFactory.getLogger("Jad Data Processor:");
 
 
     public JadDataProcessor(JadRepository jadRepository) {
@@ -31,7 +31,11 @@ public class JadDataProcessor {
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             if (inputStream != null) {
                 while ((str = reader.readLine()) != null) {
-                    jadRepository.save(createWaypoint(str));
+                    if(isLineValid(str)) {
+                        jadRepository.save(createWaypoint(str));
+                    }else{
+                        continue;
+                    }
                 }
             }
         } catch (IOException e){
@@ -42,17 +46,23 @@ public class JadDataProcessor {
         }
         System.out.println(buf.toString());
     }
-    public Waypoint createWaypoint(String waypointLine){
+    private Waypoint createWaypoint(String waypointLine){
         String[] wpt =  waypointLine.split(",");
         if (wpt.length==SHORT_WAYPOINT_LINE){
             logger.info(waypointLine);
             return new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4]);
-        }else if (wpt.length==LONG_WAYPOINT_LINE) {
+        }else{
             logger.info(waypointLine);
             return new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4],wpt[5]);
+        }
+    }
+    private Boolean isLineValid(String waypointLine){
+        int waypointLineLength = waypointLine.split(",").length;
+        if(waypointLineLength==SHORT_WAYPOINT_LINE||waypointLineLength==LONG_WAYPOINT_LINE){
+            return true;
         }else{
-            logger.info("Invalid waypoint line length:" +wpt.length);
-            return null;
+            logger.info("Invalid waypoint line length:" +waypointLineLength);
+            return false;
         }
     }
 }
