@@ -19,6 +19,5 @@ public class JadUploader {
 
     public void upload(final InputStream inputStream) {
             jadDataProcessor.read(inputStream);
-            //jadRepository.save(loadedJadData);
     }
 }
