@@ -2,25 +2,12 @@ var gridOptions = {
     // define grid columns
     columnDefs: [
         // using default ColDef
-        {headerName: 'Athlete', field: 'athlete'},
-        {headerName: 'Sport', field: 'sport'},
-
-        // using number column type
-        {headerName: 'Age', field: 'age', type: 'numberColumn'},
-        {headerName: 'Year', field: 'year', type: 'numberColumn'},
-
-        // using date and non-editable column types
-        {headerName: 'Date', field: 'date', type: ['dateColumn', 'nonEditableColumn'], width: 200 },
-        {
-            headerName: 'Medals',
-            groupId: 'medalsGroup',
-            children: [
-                // using medal column type
-                {headerName: 'Gold', field: 'gold', type: 'medalColumn'},
-                {headerName: 'Silver', field: 'silver', type: 'medalColumn'},
-                {headerName: 'Bronze', field: 'bronze', type: 'medalColumn'}
-            ]
-        }
+        {headerName: 'Country', field: 'country'},
+        {headerName: 'Country extended', field: 'country extended'},
+        {headerName: 'ICAO', field: 'ICAO'},
+        {headerName: 'Waypoint ID', field: 'WPT_id'},
+        {headerName: 'Latitude', field: 'latitude'},
+        {headerName: 'Longitude', field: 'longitude'},
     ],
 
     // default ColDef, gets applied to every column
