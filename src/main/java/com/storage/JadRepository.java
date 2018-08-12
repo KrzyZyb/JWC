@@ -10,8 +10,8 @@ import java.util.List;
 public class JadRepository {
     private List<Waypoint> jadRepository = new ArrayList<Waypoint>();
 
-    void save(ArrayList<Waypoint> loadedWaypoints){
-        jadRepository.addAll(loadedWaypoints);
+    void save(Waypoint waypoint){
+        jadRepository.add(waypoint);
     }
     List<Waypoint> getJadRepository(){
         return jadRepository;

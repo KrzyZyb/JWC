@@ -29,7 +29,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile(group: 'org.webjars', name: 'bootstrap', version: '4.1.1')
     compile("org.springframework.boot:spring-boot-starter-thymeleaf")
-    compile (group: 'org.webjars', name: 'font-awesome', version: '3.0.0')
-    compile (group: 'org.webjars.bower', name: 'ag-grid', version: '1.4.1')
-    testCompile("junit:junit")
+    compile(group: 'org.webjars', name: 'font-awesome', version: '3.0.0')
+    compile(group: 'org.webjars.bower', name: 'ag-grid', version: '1.4.1')
+    compileOnly 'org.projectlombok:lombok:1.16.18'
 }
