@@ -1,13 +1,14 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+                xmlns:form="http://www.springframework.org/tags/form"
+                xmlns:spring="http://www.springframework.org/tags">
   <head>
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Krzysztof Zybul">
 
-    <title>Agency - Start Bootstrap Theme</title>
+    <title>JWC - Jeppesen Waypoint Comparator</title>
 
     <!-- Bootstrap core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -121,18 +122,18 @@
             </span>
             <h2 class="section-heading text-uppercase">Upload</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
-              <form  method="POST" action="uploadFile" enctype="multipart/form-data" th:action="@{/upload/jadUpload}">
+              <form id="uploadForm" method="POST" action="uploadFile" enctype="multipart/form-data" th:action="@{/upload/jadUpload}">
 
 
                 <span class="input-group-btn">
                     <span class="btn btn-primary">
-                        <input type="file" single id="jadFileUpload" name="file" accept=".csv" lang="en"/>
+                        <input required type="file" single id="jadFileUpload" name="file" accept=".csv" lang="en" form="uploadForm"/>
                     </span>
                       <span class="btn btn-primary">
-                        <input type="file" single id="opsFileUpload" name="file" accept=".csv" lang="en">
+                        <input required type="file" single id="opsFileUpload" name="file" accept=".csv" lang="en" form="uploadForm">
                     </span>
                 </span>
-                <button id="uploadFiles" class="btn btn-primary text-uppercase" type="submit" value="Submit">Upload Files</button>
+                <button id="uploadFiles" class="btn btn-primary text-uppercase" type="submit" value="Submit" form="uploadForm">Upload Files</button>
               </form>
           </div>
         </div>
