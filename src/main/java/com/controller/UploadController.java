@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.storage.JadRepository;
 import com.storage.JadUploader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,9 +24,12 @@ public class UploadController {
     private static final String IS_SUCCESS_ATTRIBUTE = "isSuccess";
 
     JadUploader jadUploader;
+    JadRepository jadRepository;
 
-    public UploadController(final JadUploader jadUploader) {
+    public UploadController(final JadUploader jadUploader, final JadRepository jadRepository) {
         this.jadUploader=jadUploader;
+        this.jadRepository=jadRepository;
+
     }
 
     @GetMapping("/jadUpload")
@@ -41,7 +45,9 @@ public class UploadController {
     @PostMapping("/jadUpload")
     public ModelAndView post$JadUpload(@RequestParam("file") final MultipartFile file) throws IOException {
         uploadJadFile(file);
-        return getModelAndView();
+        ModelAndView model = new ModelAndView("index");
+        model.addObject("jad_waypoints", jadRepository.getJadRepository());
+        return model;
     }
 
     private ModelAndView getModelAndView() {

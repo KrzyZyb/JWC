@@ -13,7 +13,7 @@ public class JadRepository {
     void save(Waypoint waypoint){
         jadRepository.add(waypoint);
     }
-    List<Waypoint> getJadRepository(){
+    public List<Waypoint> getJadRepository(){
         return jadRepository;
     }
 }

@@ -138,6 +138,16 @@
           </div>
         </div>
       </div>
+      <table>
+      <tbody th:each="waypoint : ${jad_waypoints}" var="waypoint">
+        <tr>
+          <td>${waypoint.ICAO}</td>
+          <td>${waypoint.WPT_id}</td>
+          <td>${waypoint.country}</td>
+        </tr>
+      </tbody>
+      </table>
+
     </section>
 
     <!-- Compare -->
