@@ -19,17 +19,12 @@ import java.io.IOException;
 @RequestMapping("/upload")
 public class UploadController {
 
-    private static final String WRONG_FILE_TYPE_MESSAGE = "Correct file type is not selected";
-    private static final String MESSAGES_ATTRIBUTE = "messages";
-    private static final String IS_SUCCESS_ATTRIBUTE = "isSuccess";
-
     JadUploader jadUploader;
     JadRepository jadRepository;
 
     public UploadController(final JadUploader jadUploader, final JadRepository jadRepository) {
         this.jadUploader=jadUploader;
         this.jadRepository=jadRepository;
-
     }
 
     @GetMapping("/jadUpload")
@@ -46,7 +41,7 @@ public class UploadController {
     public ModelAndView post$JadUpload(@RequestParam("file") final MultipartFile file) throws IOException {
         uploadJadFile(file);
         ModelAndView model = new ModelAndView("index");
-        model.addObject("jad_waypoints", jadRepository.getJadRepository());
+        model.addObject("jadWaypoints", jadRepository.getJadRepository());
         return model;
     }
 

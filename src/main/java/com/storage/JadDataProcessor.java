@@ -49,11 +49,13 @@ public class JadDataProcessor {
     private Waypoint createWaypoint(String waypointLine){
         String[] wpt =  waypointLine.split(",");
         if (wpt.length==SHORT_WAYPOINT_LINE){
-            logger.info(waypointLine);
-            return new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4]);
+            Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4]);
+            logger.info("New waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
+            return waypoint;
         }else{
-            logger.info(waypointLine);
-            return new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4],wpt[5]);
+            Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4],wpt[5]);
+            logger.info("New waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
+            return waypoint;
         }
     }
     private Boolean isLineValid(String waypointLine){

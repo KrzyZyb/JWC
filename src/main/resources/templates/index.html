@@ -138,16 +138,6 @@
           </div>
         </div>
       </div>
-      <table>
-      <tbody th:each="waypoint : ${jad_waypoints}" var="waypoint">
-        <tr>
-          <td>${waypoint.ICAO}</td>
-          <td>${waypoint.WPT_id}</td>
-          <td>${waypoint.country}</td>
-        </tr>
-      </tbody>
-      </table>
-
     </section>
 
     <!-- Compare -->
@@ -161,7 +151,7 @@
             </span>
             <h2 class="section-heading text-uppercase">Compare</h2>
           </div>
-          <div align="center" id="myGrid" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+          <div id="myGrid" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
         </div>
         </div>
       </div>
