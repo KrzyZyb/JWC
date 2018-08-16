@@ -13,27 +13,32 @@ import java.io.InputStreamReader;
 
 @Service
 @Slf4j
-public class JadDataProcessor {
+public class DataProcessor {
     private static final int SHORT_WAYPOINT_LINE=5;
     private static final int LONG_WAYPOINT_LINE=6;
-    private JadRepository jadRepository;
+    public static final String OPS_FILE="OPS";
+    public static final String JAD_FILE="JAD";
+    private DataRepository dataRepository;
     private Logger logger = LoggerFactory.getLogger("Jad Data Processor:");
 
 
-    public JadDataProcessor(JadRepository jadRepository) {
-        this.jadRepository = jadRepository;
+    public DataProcessor(DataRepository dataRepository) {
+        this.dataRepository = dataRepository;
     }
 
-    public void read(final InputStream inputStream){
+    public void read(final InputStream inputStream, final String dataType){
         String str = "";
         StringBuffer buf = new StringBuffer();
         try{
             BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
             if (inputStream != null) {
                 while ((str = reader.readLine()) != null) {
-                    if(isLineValid(str)) {
-                        jadRepository.save(createWaypoint(str));
-                    }else{
+                    if(isLineValid(str)&&dataType.equals(OPS_FILE)) {
+                        dataRepository.saveOps(createWaypoint(str,OPS_FILE));
+                    }else if(isLineValid(str)&&dataType.equals(JAD_FILE)){
+                        dataRepository.saveJad(createWaypoint(str,JAD_FILE));
+                    }
+                    else{
                         continue;
                     }
                 }
@@ -42,19 +47,27 @@ public class JadDataProcessor {
             System.err.println("Input-Output error: " +e);
         }
         finally {
-            try { inputStream.close(); } catch (Throwable ignore) {}
+            try {
+                int repositoryElementsCounter=0;
+                if(dataType.equals(JAD_FILE)){
+                    repositoryElementsCounter = dataRepository.getJadRepository().size();
+                }else{
+                    repositoryElementsCounter = dataRepository.getOpsRepository().size();
+                }
+                logger.info("Data Processor: " +repositoryElementsCounter +" new "+dataType +" waypoints added.");
+                inputStream.close(); } catch (Throwable ignore) {}
         }
         System.out.println(buf.toString());
     }
-    private Waypoint createWaypoint(String waypointLine){
+    private Waypoint createWaypoint(String waypointLine, String waypointType){
         String[] wpt =  waypointLine.split(",");
         if (wpt.length==SHORT_WAYPOINT_LINE){
             Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4]);
-            logger.info("New waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
+            logger.info("New "+waypointType+" waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
             return waypoint;
         }else{
             Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4],wpt[5]);
-            logger.info("New waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
+            logger.info("New "+waypointType+" waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
             return waypoint;
         }
     }

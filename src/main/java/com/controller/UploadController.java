@@ -1,7 +1,7 @@
 package com.controller;
 
-import com.storage.JadRepository;
-import com.storage.JadUploader;
+import com.storage.DataRepository;
+import com.storage.FileUploader;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,39 +9,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.io.BufferedInputStream;
-import java.io.File;
 import java.io.IOException;
 
 @Controller
 @RequestMapping("/upload")
 public class UploadController {
 
-    JadUploader jadUploader;
-    JadRepository jadRepository;
+    DataRepository dataRepository;
+    FileUploader fileUploader;
 
-    public UploadController(final JadUploader jadUploader, final JadRepository jadRepository) {
-        this.jadUploader=jadUploader;
-        this.jadRepository=jadRepository;
+    public UploadController(final FileUploader fileUploader, final DataRepository dataRepository) {
+        this.fileUploader=fileUploader;
+        this.dataRepository = dataRepository;
     }
 
-    @GetMapping("/jadUpload")
-    public ModelAndView get$JadUpload() {
-        return getModelAndView();
-    }
-
-    @GetMapping("/opsUpload")
-    public ModelAndView get$OpsUpload() {
-        return getModelAndView();
-    }
-
-    @PostMapping("/jadUpload")
-    public ModelAndView post$JadUpload(@RequestParam("file") final MultipartFile file) throws IOException {
-        uploadJadFile(file);
+    @PostMapping("/fileUpload")
+    public ModelAndView post$FileUpload(@RequestParam("jadFile") final MultipartFile jadFile, @RequestParam("opsFile") final MultipartFile opsFile) throws IOException {
+        uploadJadFile(jadFile);
+        uploadOpsFile(opsFile);
         ModelAndView model = new ModelAndView("index");
-        model.addObject("jadWaypoints", jadRepository.getJadRepository());
         return model;
     }
 
@@ -51,7 +39,10 @@ public class UploadController {
 
 
     private void uploadJadFile(final @RequestParam("file") MultipartFile file) throws IOException {
-        jadUploader.upload(new BufferedInputStream(file.getInputStream()));
+        fileUploader.uploadJad(new BufferedInputStream(file.getInputStream()));
+    }
+    private void uploadOpsFile(final @RequestParam("file") MultipartFile file) throws IOException {
+        fileUploader.uploadOps(new BufferedInputStream(file.getInputStream()));
     }
 
 }

@@ -36,7 +36,7 @@ var gridOptions = {
 
 // setup the grid after the page has finished loading
 document.addEventListener('DOMContentLoaded', function() {
-    var gridDiv = document.querySelector('#myGrid');
+    var gridDiv = document.querySelector('#myGridJad');
     new agGrid.Grid(gridDiv, gridOptions);
 
     agGrid.simpleHttpRequest({url: '/api/jadwaypoints'}).then(function(data) {
