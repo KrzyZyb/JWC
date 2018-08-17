@@ -46,11 +46,6 @@ public class UploadController {
         return model;
     }
 
-    private ModelAndView getModelAndView() {
-        return new ModelAndView("index");
-    }
-
-
     private void uploadJadFile(final @RequestParam("file") MultipartFile file) throws IOException {
         fileUploader.uploadJad(new BufferedInputStream(file.getInputStream()));
     }

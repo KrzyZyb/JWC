@@ -3,11 +3,11 @@ var gridOptionsRaport = {
     columnDefs: [
         // using default ColDef
         {headerName: 'Country', field: 'country'},
-        {headerName: 'ICAO', field: 'ICAO'},
-        {headerName: 'Waypoint ID', field: 'WPT_id'},
+        {headerName: 'ICAO', field: 'icao'},
+        {headerName: 'Waypoint ID', field: 'wpt_id'},
         {headerName: 'Latitude', field: 'latitude'},
         {headerName: 'Longitude', field: 'longitude'},
-        {headerName: 'Status', field: 'status'},
+        {headerName: 'Status', field: 'status'}
     ],
 
     // default ColDef, gets applied to every column
