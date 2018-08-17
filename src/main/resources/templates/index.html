@@ -132,12 +132,10 @@
                     </span>
                   <span>
                     <button id="uploadFiles" class="btn btn-primary text-uppercase" style="background-color:green" type="submit" value="Submit" form="uploadForm">Upload Files</button>
+                    <button id="resetData" class="btn btn-primary text-uppercase" onclick="location.href='/'" style="background-color:red" type="submit" value="Submit">Reset Data</button>
                   </span>
                 </span>
               </form>
-            <span>
-              <form id="resetDataForm" method="POST" th:action="@{/upload/resetData}"> <button id="resetData" class="btn btn-primary text-uppercase" style="background-color:red" type="submit" value="Submit" form="resetDataForm">Reset Data</button></form>
-            </span>
           </div>
         </div>
       </div>
