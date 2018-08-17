@@ -149,12 +149,36 @@
             </span>
             <h2 class="section-heading text-uppercase">Compare</h2>
           </div>
-          <div id="myGridJad" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
-          <div id="myGridOps" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+          <div class="container">
+
+            <nav>
+              <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                <a class="nav-item nav-link active btn-primary" id="nav-ops-tab" data-toggle="tab" href="#menu_ops" role="tab" aria-controls="nav-ops" aria-selected="true">OPS Data</a>
+                <a class="nav-item nav-link btn-primary" id="nav-jad-tab" data-toggle="tab" href="#menu_jad" role="tab" aria-controls="nav-jad" aria-selected="false">JAD Data</a>
+                <a class="nav-item nav-link btn-primary" id="nav-raport-tab" data-toggle="tab" href="#menu_raport" role="tab" aria-controls="nav-raport" aria-selected="false">Raport</a>
+              </div>
+            </nav>
+            <div class="tab-content" id="nav-tabContent">
+              <div class="tab-pane fade show active" id="menu_ops" role="tabpanel" aria-labelledby="nav-ops-tab">
+                <h3>OPS Data</h3>
+                <div id="myGridJad" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+              </div>
+              <div class="tab-pane fade" id="menu_jad" role="tabpanel" aria-labelledby="nav-jad-tab">
+                <h3>JAD Data</h3>
+                <div id="myGridOps" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+              </div>
+              <div class="tab-pane fade" id="menu_raport" role="tabpanel" aria-labelledby="nav-raport-tab">
+                <h3>Raport</h3>
+                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+              </div>
+            </div>
+          </div>
         </div>
         </div>
-      </div>
+
     </section>
+
+
 
     <!-- Update -->
     <section class="bg-light" id="update">

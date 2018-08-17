@@ -1,4 +1,4 @@
-var gridOptions = {
+var gridOptionsOps = {
     // define grid columns
     columnDefs: [
         // using default ColDef
@@ -36,10 +36,10 @@ var gridOptions = {
 
 // setup the grid after the page has finished loading
 document.addEventListener('DOMContentLoaded', function() {
-    var gridDiv = document.querySelector('#myGridOps');
-    new agGrid.Grid(gridDiv, gridOptions);
+    var gridDivOps = document.querySelector('#myGridOps');
+    new agGrid.Grid(gridDivOps, gridOptionsOps);
 
     agGrid.simpleHttpRequest({url: '/api/opswaypoints'}).then(function(data) {
-        gridOptions.api.setRowData(data);
+        gridOptionsOps.api.setRowData(data);
     });
 });
