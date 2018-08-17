@@ -1,4 +1,4 @@
-var gridOptionsOps = {
+var gridOptionsRaport = {
     // define grid columns
     columnDefs: [
         // using default ColDef
@@ -6,7 +6,8 @@ var gridOptionsOps = {
         {headerName: 'ICAO', field: 'ICAO'},
         {headerName: 'Waypoint ID', field: 'WPT_id'},
         {headerName: 'Latitude', field: 'latitude'},
-        {headerName: 'Longitude', field: 'longitude'}
+        {headerName: 'Longitude', field: 'longitude'},
+        {headerName: 'Status', field: 'status'},
     ],
 
     // default ColDef, gets applied to every column
@@ -36,10 +37,10 @@ var gridOptionsOps = {
 
 // setup the grid after the page has finished loading
 document.addEventListener('DOMContentLoaded', function() {
-    var gridDivOps = document.querySelector('#myGridOps');
-    new agGrid.Grid(gridDivOps, gridOptionsOps);
+    var gridDivRaport = document.querySelector('#myGridRaport');
+    new agGrid.Grid(gridDivRaport, gridOptionsRaport);
 
-    agGrid.simpleHttpRequest({url: '/api/opswaypoints'}).then(function(data) {
-        gridOptionsOps.api.setRowData(data);
+    agGrid.simpleHttpRequest({url: '/api/raportwaypoints'}).then(function(data) {
+        gridOptionsRaport.api.setRowData(data);
     });
 });

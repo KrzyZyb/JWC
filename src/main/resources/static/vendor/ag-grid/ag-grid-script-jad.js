@@ -6,7 +6,7 @@ var gridOptionsJad = {
         {headerName: 'ICAO', field: 'ICAO'},
         {headerName: 'Waypoint ID', field: 'WPT_id'},
         {headerName: 'Latitude', field: 'latitude'},
-        {headerName: 'Longitude', field: 'longitude'},
+        {headerName: 'Longitude', field: 'longitude'}
     ],
 
     // default ColDef, gets applied to every column

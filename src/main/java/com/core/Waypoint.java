@@ -7,6 +7,8 @@ public class Waypoint {
     private String latitude;
     private String longitude;
     private String longxlati;
+    private String status="";
+
     /*
      * Constructor for waypoints which country name is made of two parts (for example: Poland, republic of)
      * @param country - String with first part of country name
@@ -38,7 +40,7 @@ public class Waypoint {
      */
 
     public Waypoint(String country, String ICAO, String WPT_id, String latitude, String longitude){
-        this.country=country;
+        this.country='\u0022'+country+'\u0022';
         this.ICAO=ICAO;
         this.WPT_id=WPT_id;
         this.latitude=latitude;
@@ -92,5 +94,13 @@ public class Waypoint {
 
     public void setLongxlati(String longxlati) {
         this.longxlati = longxlati;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getStatus() {
+        return status;
     }
 }

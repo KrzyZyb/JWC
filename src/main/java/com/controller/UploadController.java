@@ -1,5 +1,6 @@
 package com.controller;
 
+import com.core.WaypointDataComparator;
 import com.storage.DataRepository;
 import com.storage.FileUploader;
 import org.springframework.stereotype.Controller;
@@ -19,16 +20,20 @@ public class UploadController {
 
     DataRepository dataRepository;
     FileUploader fileUploader;
+    WaypointDataComparator waypointDataComparator;
 
-    public UploadController(final FileUploader fileUploader, final DataRepository dataRepository) {
+    public UploadController(final FileUploader fileUploader, final DataRepository dataRepository, final WaypointDataComparator waypointDataComparator) {
         this.fileUploader=fileUploader;
-        this.dataRepository = dataRepository;
+        this.dataRepository=dataRepository;
+        this.waypointDataComparator=waypointDataComparator;
     }
 
     @PostMapping("/fileUpload")
     public ModelAndView post$FileUpload(@RequestParam("jadFile") final MultipartFile jadFile, @RequestParam("opsFile") final MultipartFile opsFile) throws IOException {
         uploadJadFile(jadFile);
         uploadOpsFile(opsFile);
+        waypointDataComparator.compareWaypoints();
+
         ModelAndView model = new ModelAndView("index");
         return model;
     }

@@ -125,10 +125,10 @@
               <form id="uploadForm" method="POST" action="uploadFile" enctype="multipart/form-data" th:action="@{/upload/fileUpload}">
                 <span class="input-group-btn">
                     <span class="btn btn-primary">
-                        <input required type="file" single id="jadFileUpload" name="jadFile" accept=".csv" lang="en" form="uploadForm"/>
-                    </span>
-                      <span class="btn btn-primary">
                         <input required type="file" single id="opsFileUpload" name="opsFile" accept=".csv" lang="en" form="uploadForm"/>
+                    </span>
+                    <span class="btn btn-primary">
+                        <input required type="file" single id="jadFileUpload" name="jadFile" accept=".csv" lang="en" form="uploadForm"/>
                     </span>
                   <span>
                     <button id="uploadFiles" class="btn btn-primary text-uppercase" style="background-color:green" type="submit" value="Submit" form="uploadForm">Upload Files</button>
@@ -169,7 +169,7 @@
                 <div id="myGridOps" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
               </div>
               <div class="tab-pane fade" id="menu_raport" role="tabpanel" aria-labelledby="nav-raport-tab">
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                <div id="myGridRaport" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
               </div>
             </div>
           </div>
@@ -503,6 +503,7 @@
   <-- Ag-Grid -->
     <script src="../vendor/ag-grid/ag-grid-script-jad.js"></script>
     <script src="../vendor/ag-grid/ag-grid-script-ops.js"></script>
+    <script src="../vendor/ag-grid/ag-grid-script-raport.js"></script>
   </body>
 
 </html>
