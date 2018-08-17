@@ -31,8 +31,7 @@ public class WaypointDataComparator {
     }
 
     private boolean isWaypointInJAD(Waypoint opsWaypoint){
-        List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
-        if(jadWaypoints.contains(opsWaypoint)) {
+        if(jadContainsOps(opsWaypoint)) {
             return true;
         }else{
             waypointChanges.add(opsWaypoint);
@@ -62,6 +61,16 @@ public class WaypointDataComparator {
                 waypointChanges.add(opsWaypoint);
                 opsWaypoint.setStatus("Waypoint's id probably changed.");
                 logger.info("Data Processor: Waypoint with coordinates = " + opsWaypoint.getLongxlati() + " has changed ID");
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean jadContainsOps(Waypoint opsWaypoint){
+        List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
+        for (Waypoint jadWaypoint : jadWaypoints) {
+            if (jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) || jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
                 return true;
             }
         }
