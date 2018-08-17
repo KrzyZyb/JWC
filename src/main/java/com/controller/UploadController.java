@@ -33,6 +33,14 @@ public class UploadController {
         return model;
     }
 
+    @PostMapping("/resetData")
+    public ModelAndView post$ResetFile(){
+        dataRepository.getJadRepository().clear();
+        dataRepository.getOpsRepository().clear();
+        ModelAndView model = new ModelAndView("index");
+        return model;
+    }
+
     private ModelAndView getModelAndView() {
         return new ModelAndView("index");
     }
