@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.core.WaypointDataComparatorTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-08-18T19:49:53" hostname="DESKTOP-B25QAMU" time="0.1">
+<testsuite name="com.core.WaypointDataComparatorTest" tests="6" skipped="0" failures="0" errors="0" timestamp="2018-08-18T19:51:23" hostname="DESKTOP-B25QAMU" time="0.094">
   <properties/>
-  <testcase name="shouldIndicateThatWaypointIsNotInJad" classname="com.core.WaypointDataComparatorTest" time="0.097"/>
-  <testcase name="shouldIndicateThatWaypointHasChangedId" classname="com.core.WaypointDataComparatorTest" time="0.0"/>
-  <testcase name="shouldIndicateThatWaypointHasChangedCoordinates" classname="com.core.WaypointDataComparatorTest" time="0.0"/>
-  <testcase name="shouldIndicateThatWaypointHasNotChangedId" classname="com.core.WaypointDataComparatorTest" time="0.001"/>
-  <testcase name="shouldIndicateThatWaypointHasNotChangedCoordinates" classname="com.core.WaypointDataComparatorTest" time="0.0"/>
-  <testcase name="shouldIndicateThatWaypointIsInJad" classname="com.core.WaypointDataComparatorTest" time="0.001"/>
-  <system-out><![CDATA[21:49:53.525 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with id = id4 not found in JAD data
-21:49:53.534 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with coordinates = latitude1longitude1 has changed ID
-21:49:53.535 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with id = id1 has different coordinates
+  <testcase name="shouldIndicateThatWaypointHasNotChangedCoordinates" classname="com.core.WaypointDataComparatorTest" time="0.082"/>
+  <testcase name="shouldIndicateThatWaypointHasNotChangedId" classname="com.core.WaypointDataComparatorTest" time="0.0"/>
+  <testcase name="shouldIndicateThatWaypointHasChangedCoordinates" classname="com.core.WaypointDataComparatorTest" time="0.006"/>
+  <testcase name="shouldIndicateThatWaypointIsNotInJad" classname="com.core.WaypointDataComparatorTest" time="0.0"/>
+  <testcase name="shouldIndicateThatWaypointHasChangedId" classname="com.core.WaypointDataComparatorTest" time="0.001"/>
+  <testcase name="shouldIndicateThatWaypointIsInJad" classname="com.core.WaypointDataComparatorTest" time="0.002"/>
+  <system-out><![CDATA[21:51:24.034 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with id = id1 has different coordinates
+21:51:24.040 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with id = id4 not found in JAD data
+21:51:24.041 [Test worker] INFO Waypoint data comparator: - Data Processor: Waypoint with coordinates = latitude1longitude1 has changed ID
 ]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

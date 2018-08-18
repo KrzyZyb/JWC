@@ -31,6 +31,6 @@ hs_err_pid*
 /out/
 /build/resources/main/application.properties
 !/gradle/wrapper/gradle-wrapper.jar
-/build
+/build/
 /.gradle/
 /.gradle/4.8/fileHashes/
