@@ -30,7 +30,7 @@ public class WaypointDataComparator {
         }
     }
 
-    private boolean isWaypointInJAD(Waypoint opsWaypoint){
+     boolean isWaypointInJAD(Waypoint opsWaypoint){
         if(jadContainsOps(opsWaypoint)) {
             return true;
         }else{
@@ -41,7 +41,7 @@ public class WaypointDataComparator {
         }
     }
 
-    private boolean hasCoordinateChanged(Waypoint opsWaypoint){
+     boolean hasCoordinateChanged(Waypoint opsWaypoint){
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
         for(Waypoint jadWaypoint:jadWaypoints){
             if(jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id())&&!jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())){
@@ -54,7 +54,7 @@ public class WaypointDataComparator {
         return false;
     }
 
-    private boolean hasIdChanged(Waypoint opsWaypoint) {
+     boolean hasIdChanged(Waypoint opsWaypoint) {
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
         for (Waypoint jadWaypoint : jadWaypoints) {
             if (!jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) && jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
@@ -67,7 +67,7 @@ public class WaypointDataComparator {
         return false;
     }
 
-    private boolean jadContainsOps(Waypoint opsWaypoint){
+     boolean jadContainsOps(Waypoint opsWaypoint){
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
         for (Waypoint jadWaypoint : jadWaypoints) {
             if (jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) || jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
