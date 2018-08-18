@@ -3,19 +3,15 @@ var gridOptionsRaport = {
     columnDefs: [
         // using default ColDef
         {headerName: 'Country', field: 'country'},
-        {headerName: 'ICAO', field: 'icao'},
-        {headerName: 'Waypoint ID', field: 'wpt_id'},
-        {headerName: 'Latitude', field: 'latitude'},
-        {headerName: 'Longitude', field: 'longitude'},
-        {headerName: 'Status', field: 'status'}
+        {headerName: 'ICAO', field: 'icao', width: 100},
+        {headerName: 'Waypoint ID', field: 'wpt_id', width: 120},
+        {headerName: 'Latitude', field: 'latitude',width: 120},
+        {headerName: 'Longitude', field: 'longitude',width: 120},
+        {headerName: 'Status', field: 'status',width: 300}
     ],
 
     // default ColDef, gets applied to every column
     defaultColDef: {
-        // set the default column width
-        width: 150,
-        // make every column editable
-        editable: true,
         // make every column use 'text' filter by default
         filter: 'agTextColumnFilter'
     },
