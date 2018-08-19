@@ -6,16 +6,25 @@ import com.storage.FileUploader;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
 
 @Controller
 public class HomeController {
 
     private DataRepository dataRepository;
     private WaypointDataComparator waypointDataComparator;
+    FileUploader fileUploader;
 
-    public HomeController(final DataRepository dataRepository, final WaypointDataComparator waypointDataComparator) {
+    public HomeController(final DataRepository dataRepository, final WaypointDataComparator waypointDataComparator, final FileUploader fileUploader) {
         this.dataRepository = dataRepository;
         this.waypointDataComparator=waypointDataComparator;
+        this.fileUploader=fileUploader;
     }
 
     @GetMapping("/")
@@ -23,7 +32,32 @@ public class HomeController {
         dataRepository.getOpsRepository().clear();
         dataRepository.getJadRepository().clear();
         waypointDataComparator.getWaypointChanges().clear();
-
         return "index";
+    }
+
+    @PostMapping("/")
+    public ModelAndView post$FileUpload(@RequestParam("jadFile") final MultipartFile jadFile, @RequestParam("opsFile") final MultipartFile opsFile) throws IOException {
+        dataRepository.getOpsRepository().clear();
+        dataRepository.getJadRepository().clear();
+        uploadJadFile(jadFile);
+        uploadOpsFile(opsFile);
+        waypointDataComparator.compareWaypoints();
+
+        ModelAndView model = new ModelAndView("index");
+        return model;
+    }
+    @PostMapping("/resetData")
+    public ModelAndView post$ResetFile(){
+        dataRepository.getJadRepository().clear();
+        dataRepository.getOpsRepository().clear();
+        ModelAndView model = new ModelAndView("index");
+        return model;
+    }
+
+    private void uploadJadFile(final @RequestParam("file") MultipartFile file) throws IOException {
+        fileUploader.uploadJad(new BufferedInputStream(file.getInputStream()));
+    }
+    private void uploadOpsFile(final @RequestParam("file") MultipartFile file) throws IOException {
+        fileUploader.uploadOps(new BufferedInputStream(file.getInputStream()));
     }
 }
