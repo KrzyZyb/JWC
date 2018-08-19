@@ -129,7 +129,7 @@
                         <input required type="file" single id="jadFileUpload" name="jadFile" accept=".csv" lang="en" form="uploadForm">JAD </input>
                     </span>
                   <span>
-                    <button id="uploadFiles" class="btn btn-primary text-uppercase" style="background-color:green" type="submit" value="Submit" form="uploadForm">Upload</button>
+                    <button id="uploadFiles" class="btn btn-primary text-uppercase" style="background-color:green" type="submit" value="Submit" form="uploadForm" onclick="waitingDialog.show('Loading Waypoints... Please wait...'); setTimeout(function () {waitingDialog.hide();}, 5000);">Upload</button>
                     <button id="resetData" class="btn btn-primary text-uppercase" onclick="location.href='/'" style="background-color:red" type="submit" value="Submit">Reset</button>
                   </span>
                 </span>
@@ -262,6 +262,7 @@
 
     <!-- Custom scripts for this template -->
     <script src="../js/agency.min.js"></script>
+    <script src="../js/bootstrap-waitingfor.min.js"></script>
 
     <!--Ag-Grid-->
     <script src="../vendor/ag-grid/ag-grid-script-jad.js"></script>
