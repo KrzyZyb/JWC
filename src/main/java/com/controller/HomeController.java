@@ -41,6 +41,9 @@ public class HomeController {
         waypointDataComparator.compareWaypoints();
 
         ModelAndView model = new ModelAndView("index");
+        model.addObject("opsCount", dataRepository.getOpsRepository().size());
+        model.addObject("jadCount", dataRepository.getJadRepository().size());
+        model.addObject("raportCount", waypointDataComparator.getWaypointChanges().size());
         return model;
     }
     @PostMapping("/resetData")
