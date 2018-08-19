@@ -35,7 +35,7 @@ public class WaypointDataComparator {
             return true;
         }else{
             waypointChanges.add(opsWaypoint);
-            opsWaypoint.setStatus("Waypoint not found in JAD data");
+            opsWaypoint.setStatus("Status: waypoint not found");
             logger.info("Data Processor: Waypoint with id = "+opsWaypoint.getWPT_id()+" not found in JAD data");
             return false;
         }
@@ -46,7 +46,7 @@ public class WaypointDataComparator {
         for(Waypoint jadWaypoint:jadWaypoints){
             if(jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id())&&!jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())){
                 waypointChanges.add(opsWaypoint);
-                opsWaypoint.setStatus("Waypoint's coordinates probably changed.");
+                opsWaypoint.setStatus("Status: invalid coordinates");
                 logger.info("Data Processor: Waypoint with id = "+opsWaypoint.getWPT_id()+" has different coordinates");
                 return true;
             }
@@ -59,7 +59,7 @@ public class WaypointDataComparator {
         for (Waypoint jadWaypoint : jadWaypoints) {
             if (!jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) && jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
                 waypointChanges.add(opsWaypoint);
-                opsWaypoint.setStatus("Waypoint's id probably changed.");
+                opsWaypoint.setStatus("Status: invalid ID");
                 logger.info("Data Processor: Waypoint with coordinates = " + opsWaypoint.getLongxlati() + " has changed ID");
                 return true;
             }

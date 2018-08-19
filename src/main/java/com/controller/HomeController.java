@@ -29,16 +29,13 @@ public class HomeController {
 
     @GetMapping("/")
     public String getIndexPage(Model model){
-        dataRepository.getOpsRepository().clear();
-        dataRepository.getJadRepository().clear();
-        waypointDataComparator.getWaypointChanges().clear();
+        clearPreviousUploadData();
         return "index";
     }
 
     @PostMapping("/")
     public ModelAndView post$FileUpload(@RequestParam("jadFile") final MultipartFile jadFile, @RequestParam("opsFile") final MultipartFile opsFile) throws IOException {
-        dataRepository.getOpsRepository().clear();
-        dataRepository.getJadRepository().clear();
+        clearPreviousUploadData();
         uploadJadFile(jadFile);
         uploadOpsFile(opsFile);
         waypointDataComparator.compareWaypoints();
@@ -48,8 +45,7 @@ public class HomeController {
     }
     @PostMapping("/resetData")
     public ModelAndView post$ResetFile(){
-        dataRepository.getJadRepository().clear();
-        dataRepository.getOpsRepository().clear();
+        clearPreviousUploadData();
         ModelAndView model = new ModelAndView("index");
         return model;
     }
@@ -59,5 +55,10 @@ public class HomeController {
     }
     private void uploadOpsFile(final @RequestParam("file") MultipartFile file) throws IOException {
         fileUploader.uploadOps(new BufferedInputStream(file.getInputStream()));
+    }
+    private void clearPreviousUploadData(){
+        dataRepository.getOpsRepository().clear();
+        dataRepository.getJadRepository().clear();
+        waypointDataComparator.getWaypointChanges().clear();
     }
 }
