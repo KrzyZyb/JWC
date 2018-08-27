@@ -5,8 +5,11 @@
  */
 body, html {
   overflow-x: hidden;
+  overflow-y: scroll;
   font-family: 'Roboto Slab', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   height: 100%;
+  scroll-behavior: smooth;
+  display: block;
 }
 
 p {
