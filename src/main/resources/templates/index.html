@@ -60,7 +60,7 @@
         </div>
         <div class="row text-center">
           <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-3x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-cloud-upload fa-stack-1x fa-inverse"></i>
             </span>
@@ -68,7 +68,7 @@
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-3x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-refresh fa-stack-1x fa-inverse fa-spin"></i>
             </span>
@@ -76,11 +76,11 @@
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
           <div class="col-md-4">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-3x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-cloud-download fa-stack-1x fa-inverse"></i>
             </span>
-            <h4 class="service-heading">Update</h4>
+            <h4 class="service-heading">Download</h4>
             <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minima maxime quam architecto quo inventore harum ex magni, dicta impedit.</p>
           </div>
         </div>
@@ -92,7 +92,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-              <span class="fa-stack fa-4x">
+              <span class="fa-stack fa-3x">
                 <i class="fa fa-circle fa-stack-2x text-primary"></i>
                 <i class="fa fa-cloud-upload fa-stack-1x fa-inverse"></i>
             </span>
@@ -122,7 +122,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-3x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-refresh fa-stack-1x fa-inverse fa-spin"></i>
             </span>
@@ -135,6 +135,8 @@
                 <a class="nav-item nav-link active btn-primary" id="nav-ops-tab" data-toggle="tab" href="#menu_ops" role="tab" aria-controls="nav-ops" aria-selected="true">OPS Data</a>
                 <a class="nav-item nav-link btn-primary" id="nav-jad-tab" data-toggle="tab" href="#menu_jad" role="tab" aria-controls="nav-jad" aria-selected="false">JAD Data</a>
                 <a class="nav-item nav-link btn-primary" id="nav-raport-tab" data-toggle="tab" href="#menu_raport" role="tab" aria-controls="nav-raport" aria-selected="false">Raport</a>
+                <a class="nav-item nav-link btn-primary" id="nav-full-raport-tab" data-toggle="tab" href="#menu_full_raport" role="tab" aria-controls="nav-full-raport" aria-selected="false">Full Raport</a>
+                <a class="nav-item nav-link btn-primary" id="nav-updated-ops-tab" data-toggle="tab" href="#menu_updated_ops" role="tab" aria-controls="nav-updated-ops" aria-selected="false">Updated OPS</a>
               </div>
             </nav>
             <div class="tab-content" id="nav-tabContent">
@@ -150,6 +152,14 @@
                 <h6 style="padding:5px">Raport Waypoints extracted: <span th:text="${raportCount}">0</span></h6>
                 <div id="myGridRaport" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
               </div>
+              <div class="tab-pane fade" id="menu_full_raport" role="tabpanel" aria-labelledby="nav-full-raport-tab">
+                <h6 style="padding:5px">Raport Waypoints full: <span th:text="${fullRaportCount}">0</span></h6>
+                <div id="myGridFullRaport" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+              </div>
+              <div class="tab-pane fade" id="menu_updated_ops" role="tabpanel" aria-labelledby="nav-updated-ops-tab">
+                <h6 style="padding:5px">Updated OPS Waypoints: <span th:text="${upratedOpsCount}">0</span></h6>
+                <div id="myGridUpdatedOps" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+              </div>
             </div>
           </div>
         </div>
@@ -162,7 +172,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <span class="fa-stack fa-4x">
+            <span class="fa-stack fa-3x">
               <i class="fa fa-circle fa-stack-2x text-primary"></i>
               <i class="fa fa-cloud-download fa-stack-1x fa-inverse"></i>
             </span>
