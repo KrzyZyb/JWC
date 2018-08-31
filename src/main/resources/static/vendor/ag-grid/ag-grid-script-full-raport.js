@@ -1,12 +1,17 @@
-var gridOptionsRaport = {
+var gridOptionsFullRaport = {
     // define grid columns
     columnDefs: [
         // using default ColDef
-        {headerName: 'Country', field: 'country'},
-        {headerName: 'ICAO', field: 'icao', width: 100},
-        {headerName: 'Waypoint ID', field: 'wpt_id', width: 120},
-        {headerName: 'Latitude', field: 'latitude',width: 120},
-        {headerName: 'Longitude', field: 'longitude',width: 120},
+        {headerName: 'Country JAD', field: 'country'},
+        {headerName: 'ICAO JAD', field: 'icao', width: 100},
+        {headerName: 'Waypoint ID JAD', field: 'wpt_id', width: 120},
+        {headerName: 'Latitude JAD', field: 'latitude',width: 120},
+        {headerName: 'Longitude JAD', field: 'longitude',width: 120},
+        {headerName: 'Country OPS', field: 'country'},
+        {headerName: 'ICAO OPS', field: 'icao', width: 100},
+        {headerName: 'Waypoint ID OPS', field: 'wpt_id', width: 120},
+        {headerName: 'Latitude OPS', field: 'latitude',width: 120},
+        {headerName: 'Longitude OPS', field: 'longitude',width: 120},
         {headerName: 'Status', field: 'status',width: 300}
     ],
 
@@ -37,10 +42,10 @@ var gridOptionsRaport = {
 
 // setup the grid after the page has finished loading
 document.addEventListener('DOMContentLoaded', function() {
-    var gridDivRaport = document.querySelector('#myGridRaport');
-    new agGrid.Grid(gridDivRaport, gridOptionsRaport);
+    var gridDivFullRaport = document.querySelector('#myGridFullRaport');
+    new agGrid.Grid(gridDivFullRaport, gridOptionsFullRaport);
 
-    agGrid.simpleHttpRequest({url: '/api/raportwaypoints'}).then(function(data) {
-        gridOptionsRaport.api.setRowData(data);
+    agGrid.simpleHttpRequest({url: '/api/fullraportwaypoints'}).then(function(data) {
+        gridOptionsFullRaport.api.setRowData(data);
     });
 });

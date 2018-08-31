@@ -32,4 +32,8 @@ public class WaypointController {
     @RequestMapping("/api/raportwaypoints")
     public List<Waypoint>  getWaypointsRaport(){ return waypointDataComparator.getWaypointChanges();
     }
+
+    @RequestMapping("/api/fullraportwaypoints")
+    public List<Waypoint>  getFullWaypointsRaport(){ return dataRepository.getJadRepository(); //TODO: Give full raport
+    }
 }

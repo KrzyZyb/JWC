@@ -154,10 +154,10 @@
               </div>
               <div class="tab-pane fade" id="menu_full_raport" role="tabpanel" aria-labelledby="nav-full-raport-tab">
                 <h6 style="padding:5px">Raport Waypoints full: <span th:text="${fullRaportCount}">0</span></h6>
-                <div id="myGridFullRaport" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
+              <div id="myGridFullRaport" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
               </div>
               <div class="tab-pane fade" id="menu_updated_ops" role="tabpanel" aria-labelledby="nav-updated-ops-tab">
-                <h6 style="padding:5px">Updated OPS Waypoints: <span th:text="${upratedOpsCount}">0</span></h6>
+                <h6 style="padding:5px">Updated OPS Waypoints: <span th:text="${updatedOpsCount}">0</span></h6>
                 <div id="myGridUpdatedOps" style="height: 600px;width:1200px;" class="ag-theme-balham"></div>
               </div>
             </div>
@@ -208,6 +208,7 @@
     <script src="../vendor/ag-grid/ag-grid-script-jad.js"></script>
     <script src="../vendor/ag-grid/ag-grid-script-ops.js"></script>
     <script src="../vendor/ag-grid/ag-grid-script-raport.js"></script>
+    <script src="../vendor/ag-grid/ag-grid-script-full-raport.js"></script>
     </scroll-container>
   </body>
 
