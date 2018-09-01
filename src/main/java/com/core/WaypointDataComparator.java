@@ -20,13 +20,13 @@ public class WaypointDataComparator {
 
     public WaypointDataComparator(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
-        this.updatedOpsData=new ArrayList<>();
         waypointChanges = new ArrayList<>();
         waypointChangesFull = new ArrayList<>();
     }
 
     public void compareOpsAndJadData() {
         List<Waypoint> opsWaypoints = dataRepository.getOpsRepository();
+        this.updatedOpsData= getOpsWaypointsListCopy(opsWaypoints);
         for (Waypoint opsWaypoint : opsWaypoints) {
             WaypointComparsionModel rowForFullRaportTable = createOpsForComparsionModel(opsWaypoint);
             checkIfOpsWaypointIsInJadFile(opsWaypoint, rowForFullRaportTable);
@@ -119,5 +119,19 @@ public class WaypointDataComparator {
     }
     public List<WaypointComparsionModel> getWaypointChangesFull(){
         return waypointChangesFull;
+    }
+    public List<Waypoint> getUpdatedOpsData(){
+        return updatedOpsData;
+    }
+
+    public List<Waypoint> getOpsWaypointsListCopy(List<Waypoint> opsListToCopy){
+        List<Waypoint> waypointsCopy = new ArrayList<>();
+        for (Waypoint waypoint : opsListToCopy){
+            Waypoint waypointCopy = new Waypoint(waypoint.getCountry(),waypoint.getICAO(),waypoint.getWPT_id(),waypoint.getLatitude(), waypoint.getLongitude());
+            logger.info("Waypoint cloned: " +waypointCopy.getWPT_id());
+            waypointsCopy.add(waypointCopy);
+        }
+        logger.info("Waypoint list cloned: " +waypointsCopy.size());
+        return waypointsCopy;
     }
 }

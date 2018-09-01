@@ -37,4 +37,8 @@ public class WaypointController {
     @RequestMapping("/api/fullraportwaypoints")
     public List<WaypointComparsionModel> getFullWaypointsRaport(){ return waypointDataComparator.getWaypointChangesFull();
     }
+
+    @RequestMapping("/api/updatedopswaypoints")
+    public List<Waypoint> getChangedOpsWaypoints(){ return waypointDataComparator.getUpdatedOpsData();
+    }
 }

@@ -63,11 +63,9 @@ public class DataProcessor {
         String[] wpt =  waypointLine.split(",");
         if (wpt.length==SHORT_WAYPOINT_LINE){
             Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4]);
-            logger.info("New "+waypointType+" waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
             return waypoint;
         }else{
             Waypoint waypoint = new Waypoint(wpt[0],wpt[1],wpt[2],wpt[3],wpt[4],wpt[5]);
-            logger.info("New "+waypointType+" waypoint loaded: "+waypoint.getWPT_id()+" ["+waypointLine+"]");
             return waypoint;
         }
     }
