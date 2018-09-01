@@ -44,6 +44,7 @@ public class HomeController {
         model.addObject("opsCount", dataRepository.getOpsRepository().size());
         model.addObject("jadCount", dataRepository.getJadRepository().size());
         model.addObject("raportCount", waypointDataComparator.getWaypointChanges().size());
+        model.addObject("fullRaportCount", waypointDataComparator.getWaypointChangesFull().size());
         return model;
     }
     @PostMapping("/resetData")

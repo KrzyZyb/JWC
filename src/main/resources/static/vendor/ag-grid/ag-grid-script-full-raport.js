@@ -2,12 +2,12 @@ var gridOptionsFullRaport = {
     // define grid columns
     columnDefs: [
         // using default ColDef
-        {headerName: 'Country OPS', field: 'countryOPS'},
-        {headerName: 'ICAO OPS', field: 'icaoops', width: 100},
-        {headerName: 'Waypoint ID OPS', field: 'wpt_idOPS', width: 120},
-        {headerName: 'Latitude OPS', field: 'latitudeOPS',width: 120},
-        {headerName: 'Longitude OPS', field: 'longitudeOPS',width: 120},
-        {headerName: 'Status', field: 'status',width: 300},
+        {headerName: 'Country OPS', field: 'countryOPS', cellStyle: {'background-color': 'LightBlue'}},
+        {headerName: 'ICAO OPS', field: 'icaoops', width: 100, cellStyle: {'background-color': 'LightBlue'}},
+        {headerName: 'Waypoint ID OPS', field: 'wpt_idOPS', width: 120, cellStyle: {'background-color': 'LightBlue'}},
+        {headerName: 'Latitude OPS', field: 'latitudeOPS',width: 120, cellStyle: {'background-color': 'LightBlue'}},
+        {headerName: 'Longitude OPS', field: 'longitudeOPS',width: 120, cellStyle: {'background-color': 'LightBlue'}},
+        {headerName: 'Status', field: 'status',width: 300, cellStyle: {'background-color': 'LightBlue'}},
         {headerName: 'Country JAD', field: 'countryJAD',width:300},
         {headerName: 'ICAO JAD', field: 'icaojad', width: 100},
         {headerName: 'Waypoint ID JAD', field: 'wpt_idJAD', width: 120},

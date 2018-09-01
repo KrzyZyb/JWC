@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class WaypointDataComparator {
+public class WaypointDataComparator { //TODO: ADD COMPARSION OF WCM NOT TO REPEAT ITSELF
     DataRepository dataRepository;
     List<Waypoint> waypointChanges;
     List<WaypointComparsionModel> waypointChangesFull;
