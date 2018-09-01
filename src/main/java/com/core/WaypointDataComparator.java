@@ -15,60 +15,62 @@ public class WaypointDataComparator {
     DataRepository dataRepository;
     List<Waypoint> waypointChanges;
     List<WaypointComparsionModel> waypointChangesFull;
+    List<Waypoint> updatedOpsData;
     private Logger logger = LoggerFactory.getLogger("Waypoint data comparator:");
 
     public WaypointDataComparator(DataRepository dataRepository) {
         this.dataRepository = dataRepository;
+        this.updatedOpsData=new ArrayList<>();
         waypointChanges = new ArrayList<>();
         waypointChangesFull = new ArrayList<>();
     }
 
-    public void compareWaypoints(){
+    public void compareOpsAndJadData() {
         List<Waypoint> opsWaypoints = dataRepository.getOpsRepository();
-        for(Waypoint opsWaypoint: opsWaypoints) {
-            WaypointComparsionModel fullRaportRow = createOpsForComparsionModel(opsWaypoint);
-            checkIfOpsIsInJad(opsWaypoint, fullRaportRow);
-            hasCoordinateChanged(opsWaypoint, fullRaportRow);
-            hasIdChanged(opsWaypoint, fullRaportRow);
-            waypointChangesFull.add(fullRaportRow);
+        for (Waypoint opsWaypoint : opsWaypoints) {
+            WaypointComparsionModel rowForFullRaportTable = createOpsForComparsionModel(opsWaypoint);
+            checkIfOpsWaypointIsInJadFile(opsWaypoint, rowForFullRaportTable);
+            checkIfCoordinatesHaveChanged(opsWaypoint, rowForFullRaportTable);
+            checkIfIdHasChanged(opsWaypoint, rowForFullRaportTable);
+            waypointChangesFull.add(rowForFullRaportTable);
         }
     }
 
-     void checkIfOpsIsInJad(Waypoint opsWaypoint, WaypointComparsionModel fullRaportRow){
+    void checkIfOpsWaypointIsInJadFile(Waypoint opsWaypoint, WaypointComparsionModel rowForFullRaportTable) {
         final String WAYPOINT_NOT_FOUND_STATUS = "Waypoint not found";
-        Waypoint jadWaypoint = getJadForOps(opsWaypoint);
-        if(jadWaypoint==null) {
+        Waypoint jadWaypoint = getJadWaypointFromOpsWaypointData(opsWaypoint);
+        if (jadWaypoint == null) {
             opsWaypoint.setStatus("Status: waypoint not found");
             waypointChanges.add(opsWaypoint);
             logger.info("Data Processor: Waypoint with id = " + opsWaypoint.getWPT_id() + " not found in JAD data");
-            updateFullRaportRowStatus(WAYPOINT_NOT_FOUND_STATUS, fullRaportRow);
-        }else{
-            addJadForComparsionModel(jadWaypoint, fullRaportRow);
+            updateFullRaportRowStatus(WAYPOINT_NOT_FOUND_STATUS, rowForFullRaportTable);
+        } else {
+            addJadForComparsionModel(jadWaypoint, rowForFullRaportTable);
         }
     }
 
-     boolean hasCoordinateChanged(Waypoint opsWaypoint, WaypointComparsionModel fullRaportRow){
+    boolean checkIfCoordinatesHaveChanged(Waypoint opsWaypoint, WaypointComparsionModel rowForFullRaportTable) {
         final String INVALID_COORDINATES_STATUS = "Invalid coordinates";
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
-        for(Waypoint jadWaypoint:jadWaypoints){
-            if(jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id())&&!jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())){
+        for (Waypoint jadWaypoint : jadWaypoints) {
+            if (jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) && !jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
                 opsWaypoint.setStatus("Status: invalid coordinates");
                 waypointChanges.add(opsWaypoint);
                 logger.info("Data Processor: Waypoint with id = "+opsWaypoint.getWPT_id()+" has different coordinates");
-                updateFullRaportRowStatus(INVALID_COORDINATES_STATUS, fullRaportRow);
+                updateFullRaportRowStatus(INVALID_COORDINATES_STATUS, rowForFullRaportTable);
                 return true;
             }
         }
         return false;
     }
 
-     boolean hasIdChanged(Waypoint opsWaypoint, WaypointComparsionModel fullRaportRow) {
+    boolean checkIfIdHasChanged(Waypoint opsWaypoint, WaypointComparsionModel rowForFullRaportTable) {
         final String INVALID_ID_STATUS = "Invalid ID";
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
         for (Waypoint jadWaypoint : jadWaypoints) {
             if (!jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) && jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
                 opsWaypoint.setStatus("Status: invalid ID");
-                updateFullRaportRowStatus(INVALID_ID_STATUS, fullRaportRow);
+                updateFullRaportRowStatus(INVALID_ID_STATUS, rowForFullRaportTable);
                 waypointChanges.add(opsWaypoint);
                 logger.info("Data Processor: Waypoint with coordinates = " + opsWaypoint.getLongxlati() + " has changed ID");
                 return true;
@@ -77,7 +79,7 @@ public class WaypointDataComparator {
         return false;
     }
 
-     Waypoint getJadForOps (Waypoint opsWaypoint){
+    Waypoint getJadWaypointFromOpsWaypointData(Waypoint opsWaypoint) {
         List<Waypoint> jadWaypoints = dataRepository.getJadRepository();
         for (Waypoint jadWaypoint : jadWaypoints) {
             if (jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) || jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {

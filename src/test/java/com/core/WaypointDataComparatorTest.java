@@ -49,7 +49,7 @@ public class WaypointDataComparatorTest {
         //before
         Waypoint waypoint = new Waypoint("country1","icao1","id1","latitude5","longitude5");
         //when
-        boolean result = waypointDataComparator.hasCoordinateChanged(waypoint);
+        boolean result = waypointDataComparator.checkIfCoordinatesHaveChanged(waypoint);
         assertTrue(result);
     }
     @Test
@@ -57,7 +57,7 @@ public class WaypointDataComparatorTest {
         //before
         Waypoint waypoint = new Waypoint("country1","icao1","id1","latitude1","longitude1");
         //when
-        boolean result = waypointDataComparator.hasCoordinateChanged(waypoint);
+        boolean result = waypointDataComparator.checkIfCoordinatesHaveChanged(waypoint);
         assertFalse(result);
     }
 
@@ -66,7 +66,7 @@ public class WaypointDataComparatorTest {
         //before
         Waypoint waypoint = new Waypoint("country1","icao1","id2","latitude1","longitude1");
         //when
-        boolean result = waypointDataComparator.hasIdChanged(waypoint);
+        boolean result = waypointDataComparator.checkIfIdHasChanged(waypoint);
         assertTrue(result);
     }
     @Test
@@ -74,7 +74,7 @@ public class WaypointDataComparatorTest {
         //before
         Waypoint waypoint = new Waypoint("country1","icao1","id1","latitude1","longitude1");
         //when
-        boolean result = waypointDataComparator.hasIdChanged(waypoint);
+        boolean result = waypointDataComparator.checkIfIdHasChanged(waypoint);
         assertFalse(result);
     }
 }

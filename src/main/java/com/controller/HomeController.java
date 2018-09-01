@@ -38,7 +38,7 @@ public class HomeController {
         clearPreviousUploadData();
         uploadJadFile(jadFile);
         uploadOpsFile(opsFile);
-        waypointDataComparator.compareWaypoints();
+        waypointDataComparator.compareOpsAndJadData();
 
         ModelAndView model = new ModelAndView("index");
         model.addObject("opsCount", dataRepository.getOpsRepository().size());
