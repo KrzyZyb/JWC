@@ -2,17 +2,17 @@ var gridOptionsFullRaport = {
     // define grid columns
     columnDefs: [
         // using default ColDef
-        {headerName: 'Country JAD', field: 'country'},
-        {headerName: 'ICAO JAD', field: 'icao', width: 100},
-        {headerName: 'Waypoint ID JAD', field: 'wpt_id', width: 120},
-        {headerName: 'Latitude JAD', field: 'latitude',width: 120},
-        {headerName: 'Longitude JAD', field: 'longitude',width: 120},
-        {headerName: 'Country OPS', field: 'country'},
-        {headerName: 'ICAO OPS', field: 'icao', width: 100},
-        {headerName: 'Waypoint ID OPS', field: 'wpt_id', width: 120},
-        {headerName: 'Latitude OPS', field: 'latitude',width: 120},
-        {headerName: 'Longitude OPS', field: 'longitude',width: 120},
-        {headerName: 'Status', field: 'status',width: 300}
+        {headerName: 'Country OPS', field: 'countryOPS'},
+        {headerName: 'ICAO OPS', field: 'icaoops', width: 100},
+        {headerName: 'Waypoint ID OPS', field: 'wpt_idOPS', width: 120},
+        {headerName: 'Latitude OPS', field: 'latitudeOPS',width: 120},
+        {headerName: 'Longitude OPS', field: 'longitudeOPS',width: 120},
+        {headerName: 'Status', field: 'status',width: 300},
+        {headerName: 'Country JAD', field: 'countryJAD',width:300},
+        {headerName: 'ICAO JAD', field: 'icaojad', width: 100},
+        {headerName: 'Waypoint ID JAD', field: 'wpt_idJAD', width: 120},
+        {headerName: 'Latitude JAD', field: 'latitudeJAD',width: 120},
+        {headerName: 'Longitude JAD', field: 'longitudeJAD',width: 120}
     ],
 
     // default ColDef, gets applied to every column

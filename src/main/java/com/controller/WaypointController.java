@@ -1,6 +1,7 @@
 package com.controller;
 
 import com.core.Waypoint;
+import com.core.WaypointComparsionModel;
 import com.core.WaypointDataComparator;
 import com.storage.DataRepository;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,10 +31,10 @@ public class WaypointController {
     }
 
     @RequestMapping("/api/raportwaypoints")
-    public List<Waypoint>  getWaypointsRaport(){ return waypointDataComparator.getWaypointChanges();
+    public List<Waypoint> getWaypointsRaport(){ return waypointDataComparator.getWaypointChanges();
     }
 
     @RequestMapping("/api/fullraportwaypoints")
-    public List<Waypoint>  getFullWaypointsRaport(){ return dataRepository.getJadRepository(); //TODO: Give full raport
+    public List<WaypointComparsionModel> getFullWaypointsRaport(){ return waypointDataComparator.getWaypointChangesFull();
     }
 }
