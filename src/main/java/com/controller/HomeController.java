@@ -64,5 +64,6 @@ public class HomeController {
         dataRepository.getOpsRepository().clear();
         dataRepository.getJadRepository().clear();
         waypointDataComparator.getWaypointChanges().clear();
+        waypointDataComparator.getWaypointChangesFull().clear();
     }
 }
