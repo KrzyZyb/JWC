@@ -45,6 +45,7 @@ public class HomeController {
         model.addObject("jadCount", dataRepository.getJadRepository().size());
         model.addObject("raportCount", waypointDataComparator.getWaypointChanges().size());
         model.addObject("fullRaportCount", waypointDataComparator.getWaypointChangesFull().size());
+        model.addObject("updatedOpsCount", waypointDataComparator.getUpdatedOpsData().size());
         return model;
     }
     @PostMapping("/resetData")
@@ -65,5 +66,6 @@ public class HomeController {
         dataRepository.getJadRepository().clear();
         waypointDataComparator.getWaypointChanges().clear();
         waypointDataComparator.getWaypointChangesFull().clear();
+        waypointDataComparator.getUpdatedOpsData().clear();
     }
 }

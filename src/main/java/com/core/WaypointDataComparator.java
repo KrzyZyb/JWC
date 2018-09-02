@@ -11,11 +11,11 @@ import java.util.List;
 
 @Service
 @Slf4j
-public class WaypointDataComparator {
+public class WaypointDataComparator { //TODO: Data not upodated to that from JAD Waypoint in updated column
     DataRepository dataRepository;
     List<Waypoint> waypointChanges;
     List<WaypointComparsionModel> waypointChangesFull;
-    List<Waypoint> updatedOpsData;
+    List<Waypoint> updatedOpsData = new ArrayList<>();
     private Logger logger = LoggerFactory.getLogger("Waypoint data comparator:");
 
     public WaypointDataComparator(DataRepository dataRepository) {
@@ -26,7 +26,7 @@ public class WaypointDataComparator {
 
     public void compareOpsAndJadData() {
         List<Waypoint> opsWaypoints = dataRepository.getOpsRepository();
-        this.updatedOpsData= getOpsWaypointsListCopy(opsWaypoints);
+        this.updatedOpsData = getOpsWaypointsListCopy(opsWaypoints);
         for (Waypoint opsWaypoint : opsWaypoints) {
             WaypointComparsionModel rowForFullRaportTable = createOpsForComparsionModel(opsWaypoint);
             checkIfOpsWaypointIsInJadFile(opsWaypoint, rowForFullRaportTable);
@@ -44,6 +44,7 @@ public class WaypointDataComparator {
             waypointChanges.add(opsWaypoint);
             logger.info("Data Processor: Waypoint with id = " + opsWaypoint.getWPT_id() + " not found in JAD data");
             updateFullRaportRowStatus(WAYPOINT_NOT_FOUND_STATUS, rowForFullRaportTable);
+            updateWaypointInUpdatedWaypointsTable(jadWaypoint, opsWaypoint);
         } else {
             addJadForComparsionModel(jadWaypoint, rowForFullRaportTable);
         }
@@ -56,8 +57,9 @@ public class WaypointDataComparator {
             if (jadWaypoint.getWPT_id().equals(opsWaypoint.getWPT_id()) && !jadWaypoint.getLongxlati().equals(opsWaypoint.getLongxlati())) {
                 opsWaypoint.setStatus("Status: invalid coordinates");
                 waypointChanges.add(opsWaypoint);
-                logger.info("Data Processor: Waypoint with id = "+opsWaypoint.getWPT_id()+" has different coordinates");
+                logger.info("Data Processor: Waypoint with id = " + opsWaypoint.getWPT_id() + " has different coordinates");
                 updateFullRaportRowStatus(INVALID_COORDINATES_STATUS, rowForFullRaportTable);
+                updateWaypointInUpdatedWaypointsTable(jadWaypoint, opsWaypoint);
                 return true;
             }
         }
@@ -73,6 +75,7 @@ public class WaypointDataComparator {
                 updateFullRaportRowStatus(INVALID_ID_STATUS, rowForFullRaportTable);
                 waypointChanges.add(opsWaypoint);
                 logger.info("Data Processor: Waypoint with coordinates = " + opsWaypoint.getLongxlati() + " has changed ID");
+                updateWaypointInUpdatedWaypointsTable(jadWaypoint, opsWaypoint);
                 return true;
             }
         }
@@ -89,7 +92,7 @@ public class WaypointDataComparator {
         return null;
     }
 
-    WaypointComparsionModel createOpsForComparsionModel(Waypoint opsWaypoint){
+    WaypointComparsionModel createOpsForComparsionModel(Waypoint opsWaypoint) {
         WaypointComparsionModel waypointComparsionModel = new WaypointComparsionModel();
         waypointComparsionModel.setCountryOPS(opsWaypoint.getCountry());
         waypointComparsionModel.setICAOOPS(opsWaypoint.getICAO());
@@ -101,7 +104,7 @@ public class WaypointDataComparator {
         return waypointComparsionModel;
     }
 
-    private void addJadForComparsionModel(Waypoint jadWaypoint, WaypointComparsionModel waypointComparsionModel){
+    private void addJadForComparsionModel(Waypoint jadWaypoint, WaypointComparsionModel waypointComparsionModel) {
         waypointComparsionModel.setCountryJAD(jadWaypoint.getCountry());
         waypointComparsionModel.setICAOJAD(jadWaypoint.getICAO());
         waypointComparsionModel.setWPT_idJAD(jadWaypoint.getWPT_id());
@@ -110,28 +113,55 @@ public class WaypointDataComparator {
         waypointComparsionModel.setLongxlatiJAD(jadWaypoint.getLongxlati());
     }
 
-    public void updateFullRaportRowStatus(String statusUpdate, WaypointComparsionModel fullRaportRow){
-        fullRaportRow.setStatus(fullRaportRow.getStatus().concat(" "+statusUpdate));
+    public void updateFullRaportRowStatus(String statusUpdate, WaypointComparsionModel fullRaportRow) {
+        fullRaportRow.setStatus(fullRaportRow.getStatus().concat(" " + statusUpdate));
     }
 
-    public List<Waypoint> getWaypointChanges(){
+    public List<Waypoint> getWaypointChanges() {
         return waypointChanges;
     }
-    public List<WaypointComparsionModel> getWaypointChangesFull(){
+
+    public List<WaypointComparsionModel> getWaypointChangesFull() {
         return waypointChangesFull;
     }
-    public List<Waypoint> getUpdatedOpsData(){
+
+    public List<Waypoint> getUpdatedOpsData() {
         return updatedOpsData;
     }
 
-    public List<Waypoint> getOpsWaypointsListCopy(List<Waypoint> opsListToCopy){
+    public List<Waypoint> getOpsWaypointsListCopy(List<Waypoint> opsListToCopy) {
         List<Waypoint> waypointsCopy = new ArrayList<>();
-        for (Waypoint waypoint : opsListToCopy){
-            Waypoint waypointCopy = new Waypoint(waypoint.getCountry(),waypoint.getICAO(),waypoint.getWPT_id(),waypoint.getLatitude(), waypoint.getLongitude());
-            logger.info("Waypoint cloned: " +waypointCopy.getWPT_id());
+        for (Waypoint waypoint : opsListToCopy) {
+            Waypoint waypointCopy = new Waypoint(waypoint.getCountry(), waypoint.getICAO(), waypoint.getWPT_id(), waypoint.getLatitude(), waypoint.getLongitude());
+            logger.info("Waypoint cloned: " + waypointCopy.getWPT_id());
             waypointsCopy.add(waypointCopy);
         }
-        logger.info("Waypoint list cloned: " +waypointsCopy.size());
+        logger.info("Waypoint list cloned: " + waypointsCopy.size());
         return waypointsCopy;
+    }
+
+    public Waypoint findWaypointByWptId(String wptId, List<Waypoint> waypoints) {
+        for (Waypoint waypoint : waypoints) {
+            if (waypoint.getWPT_id().equals(wptId)) {
+                return waypoint;
+            }
+        }
+        return null;
+    }
+
+    public void updateWaypointInUpdatedWaypointsTable(Waypoint jadWatpoint, Waypoint opsWaypoint) {
+        if (jadWatpoint == null) {
+            Waypoint updatedWaypoint = findWaypointByWptId(opsWaypoint.getWPT_id(), updatedOpsData);
+            updatedOpsData.remove(updatedWaypoint);
+            logger.warn("Waypoint removed");
+        } else {
+            Waypoint updatedWaypoint = findWaypointByWptId(opsWaypoint.getWPT_id(), updatedOpsData);
+                updatedWaypoint.setCountry(jadWatpoint.getCountry());
+                updatedWaypoint.setICAO(jadWatpoint.getICAO());
+                updatedWaypoint.setWPT_id(jadWatpoint.getWPT_id());
+                updatedWaypoint.setLatitude(jadWatpoint.getLongitude());
+                updatedWaypoint.setLongitude(jadWatpoint.getLongitude());
+                updatedWaypoint.setLongxlati(jadWatpoint.getLongxlati());
+        }
     }
 }
